@@ -13,8 +13,6 @@ RUN apt-get update && \
 COPY . .
 
 RUN chmod +x -R scripts && \
-    cp config/crontab.ini /etc/cron.d/crontab && \
-    chmod 0600 /etc/cron.d/crontab && \
     mkdir -p log && \
     touch log/cron.log && \
     touch log/mysql.log && \
