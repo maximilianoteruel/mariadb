@@ -4,20 +4,19 @@ export LC_ALL=C
 export TZ=America/Argentina/Buenos_Aires
 
 
-
-if [ -z ${CRON_DB_DUMP+x} ]; then
-    echo 'Environment Variable CRON_DB_DUMP is not defined. Setting to CRON_DB_DUMP=30_2_15_*_*'
-    CRON_DB_DUMP="30_2_15_*_*"
-fi
-
-
-if [ -z ${CRON_DB+x} ]; then
-    echo 'Environment Variable CRON_DB is not defined. Setting to CRON_DB=0_2_*_*_*'
-    CRON_DB="0_2_*_*_*"
-fi
-
-
 if [ -z ${BACKUP_DISABLED+x} ]; then
+    
+    if [ -z ${CRON_DB_DUMP+x} ]; then
+        date +"%Y-%m-%d %H:%M:%S - Environment Variable CRON_DB_DUMP is not defined. Setting to CRON_DB_DUMP=30_2_15_*_*"
+        CRON_DB_DUMP="30_2_15_*_*"
+    fi
+    
+    
+    if [ -z ${CRON_DB+x} ]; then
+        date +"%Y-%m-%d %H:%M:%S - Environment Variable CRON_DB is not defined. Setting to CRON_DB=0_2_*_*_*"
+        CRON_DB="0_2_*_*_*"
+    fi
+    
     date +"%Y-%m-%d %H:%M:%S - Configuring Cron..."
     
     crontab_config="/etc/cron.d/crontab"
